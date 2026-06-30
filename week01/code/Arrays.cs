@@ -13,7 +13,19 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        // Step 1: Create an array of doubles to store the results based on the requested length
+        double[] result = new double[length];
+
+        // Step 2: Loop through the array to calculate each multiple
+        for (int i = 0; i < length; i++)
+        {
+            // Step 3: Calculate the multiple. We use (i + 1) because indices start at 0, 
+            // but we want the 1st, 2nd, 3rd multiples, etc.
+            result[i] = number * (i + 1);
+        }
+
+        // Step 4: Return the completed array
+        return result;
     }
 
     /// <summary>
@@ -29,5 +41,21 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // Step 1: Determine the starting index of the elements that need to move to the front
+        int splitIndex = data.Count - amount;
+
+        // Step 2: Get the slice of the list that will wrap around to the front (the right side)
+        List<int> rightSide = data.GetRange(splitIndex, amount);
+
+        // Step 3: Get the slice of the list that will stay together but shift right (the left side)
+        List<int> leftSide = data.GetRange(0, splitIndex);
+
+        // Step 4: Clear the original list so we can rebuild it in the correct order
+        data.Clear();
+
+        // Step 5: Add the right side elements first, then the left side elements
+        data.AddRange(rightSide);
+        data.AddRange(leftSide);
     }
 }
